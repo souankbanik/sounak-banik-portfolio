@@ -1,0 +1,9 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "node -e \"console.log('Static portfolio: dependency install skipped')\"",
+  "buildCommand": "node -e \"console.log('Static portfolio ready in dist')\"",
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "trailingSlash": false
+}
