@@ -38,12 +38,21 @@ header nav a:hover::after,header nav a.is-current::after{transform:scaleX(1);tra
 
 .project{cursor:pointer;--project-x:0px;--project-y:0px}
 .project-art{transform:translate3d(var(--project-x),var(--project-y),0);will-change:transform,clip-path;transition:transform .7s var(--ease-out),clip-path 1.05s var(--ease-out)}
-.project-art.project-reveal{clip-path:inset(100% 0 0)}
+.project-art.project-reveal{clip-path:inset(0)}
 .project-art.project-reveal.is-revealed{clip-path:inset(0)}
 .project:hover .project-art.is-revealed{clip-path:inset(0);transform:translate3d(var(--project-x),var(--project-y),0) scale(1.018)}
 .project-info h3{transition:transform .55s var(--ease-out)}
 .project:hover .project-info h3{transform:translateX(8px)}
 .project-year{float:right;margin-top:.75em;font:500 10px/1 var(--mono,monospace);letter-spacing:.12em;color:currentColor;opacity:.55}
+
+/* Keep the editorial work introduction compact enough to reveal the first project. */
+.work.section{padding-top:clamp(54px,6vw,82px)}
+.work .section-heading{margin:clamp(30px,4vw,52px) 0 clamp(34px,4.5vw,58px)}
+.work .section-heading h2{font-size:clamp(58px,6.7vw,108px);letter-spacing:-.065em}
+.work .section-heading p{align-self:end;margin-bottom:.35em}
+.project-art::after{content:"";position:absolute;inset:0;border:1px solid rgba(17,19,16,.16);pointer-events:none;z-index:12}
+.preview-pill{transition:transform .45s var(--ease-out),background .3s ease,color .3s ease}
+.project:hover .preview-pill{transform:translateY(-5px)}
 
 .horizon-shell{position:relative;background:#10120f}
 .horizon.is-pinned{
@@ -68,6 +77,8 @@ header nav a:hover::after,header nav a.is-current::after{transform:scaleX(1);tra
 .contact-title:hover{color:var(--electric)}
 .contact-title span{transition:transform .5s var(--ease-out)}
 .contact-title:hover span{transform:rotate(45deg) scale(1.08)}
+.contact-bottom a{transition:opacity .25s ease}
+.contact-bottom a:hover{opacity:.55}
 
 .custom-cursor{position:fixed;left:-4px;top:-4px;width:9px;height:9px;border-radius:50%;background:#111310;color:#fff;z-index:9999;pointer-events:none;display:grid;place-items:center;opacity:0;transition:width .35s var(--ease-out),height .35s var(--ease-out),background .25s ease,opacity .2s ease;mix-blend-mode:multiply}
 .custom-cursor.is-visible{opacity:1}
@@ -97,7 +108,15 @@ dialog[open]{animation:dialog-in .55s var(--ease-out)}
   footer{grid-template-columns:1fr auto}
   footer>span:nth-child(2){display:none}
   .footer-local{grid-column:1/-1;grid-row:2;text-align:left;margin-top:18px}
+  .work.section{padding-top:44px}
+  .work .section-heading h2{font-size:clamp(54px,17vw,82px)}
 }
+
+/* A faster first reveal keeps the opening confident without making visitors wait. */
+.js .hero-mask>span{transition-duration:.82s}
+.js .hero-mask:nth-child(2)>span{transition-delay:.06s}
+.js .hero-kicker,.js .hero-bottom{transition:opacity .65s ease .2s,transform .65s var(--ease-out) .2s}
+.js .sculpture{transition:clip-path .9s var(--ease-out) .12s,transform .9s var(--ease-out) .12s}
 
 @media (hover:none),(pointer:coarse){
   .custom-cursor{display:none}
